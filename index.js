@@ -24,6 +24,23 @@ class Neighborhood{
 
   constructor(name){
     this.name = name;
+    this._id = Neighborhood.counter;
+    store.neighborhooods.push(this)
+  }
 
+  get id(){
+    return this._id
+  }
+
+  deliveries(){
+    return store.deliveries.filter(d => d.neighborhood() === this)
+  }
+
+  customers(){
+    return store.customers.filter(c => c.neighborhood() === this);
+  }
+
+  meals(){
+    return store.deliveries.filter(d => d.neighborhood() === this).map(d => d.meal()).uniq()
   }
 }
