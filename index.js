@@ -41,6 +41,11 @@ class Neighborhood{
   }
 
   meals(){
-    return store.deliveries.filter(d => d.neighborhood() === this).map(d => d.meal()).uniq()
+    return store.deliveries.filter(d => d.neighborhood() === this).map(d => d.meal()).uniq();
   }
 }
+
+Array.prototype.uniq = function(){
+  return this.filter((elem, index) => this.indexOf(elem) === index);
+}
+
