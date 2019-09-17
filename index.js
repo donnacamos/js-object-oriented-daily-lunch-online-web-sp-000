@@ -73,3 +73,10 @@ class CustomerBasics{
     return this.meals().map(m => m.price).reduce((cum, curr) => cum + curr, 0);
   }
 }
+
+class MealBasics{
+
+  static byPrice(){
+    
+  }
+}
