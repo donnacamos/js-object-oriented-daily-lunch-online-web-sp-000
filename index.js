@@ -77,6 +77,6 @@ class CustomerBasics{
 class MealBasics{
 
   static byPrice(){
-    
+
   }
 }
