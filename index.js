@@ -48,3 +48,28 @@ class Neighborhood{
 Array.prototype.uniq = function(){
   return this.filter((elem, index) => this.indexOf(elem) === index);
 }
+
+class CustomerBasics{
+
+  constructor(name, neighborhoodId){
+    this.name = name;
+    this.neighborhoodId = neighborhoodId;
+    store.customers.push(this);
+  }
+
+  neighborhood(){
+    return store.neighborhoods.find(n => n.id === this.neighborhoodId)
+  }
+
+  deliveries(){
+    return store.deliveries.filter(d => d.customerId === this.id);
+  }
+
+  meals(){
+    return store.deliveries.filter(d => d.customerId === this.id).map(d => d.meal());
+  }
+
+  totalSpent(){
+    return this.meals().map(m => m.price).reduce((cum, curr) => cum + curr, 0);
+  }
+}
