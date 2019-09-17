@@ -48,4 +48,3 @@ class Neighborhood{
 Array.prototype.uniq = function(){
   return this.filter((elem, index) => this.indexOf(elem) === index);
 }
-
