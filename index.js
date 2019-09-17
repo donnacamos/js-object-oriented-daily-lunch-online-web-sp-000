@@ -77,6 +77,57 @@ class CustomerBasics{
 class MealBasics{
 
   static byPrice(){
-
+      return store.meals.sort((m1, m2) => m2.price - m1.price);
   }
+
+  constructor(title, price){
+      this.title = title;
+      this.price = price;
+      store.meals.push(this);
+  }
+
+  deliveries(){
+      return store.deliveries.filter(d => d.mealId === this.id);
+  }
+
+  customers(){
+      return store.deliveries.filter(d => d.mealId === this.id).map(d => d.customer());
+  }
+
+}
+
+class DeliveryBasic{
+
+  constructor(mealId, neighborhoodId, customerId){
+      this.mealId = mealId;
+      this.neighborhoodId = neighborhoodId;
+      this.customerId = customerId;
+      store.deliveries.push(this);
+  }
+
+  neighborhood(){
+      return store.neighborhoods.find(n => this.neighborhoodId)
+  }
+
+  meal(){
+      return store.meals.find(m => m.id === this.mealId);
+  }
+
+  customer(){
+      return store.customers.find(c => c.id === this.customerId);
+  }
+
+}
+
+
+class Customer extends Countable(CustomerBasic){
+
+}
+
+class Meal extends Countable(MealBasic){
+
+}
+
+class Delivery extends Countable(DeliveryBasic){
+
 }
